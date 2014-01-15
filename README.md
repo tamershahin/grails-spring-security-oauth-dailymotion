@@ -28,26 +28,19 @@ oauth {
   providers {
     // ...
     dailymotion {
-      api = org.scribe.builder.api.DailymotionApi
+      api = grails.plugin.springsecurity.oauth.DailymotionApi
       key = 'oauth_dailymotion_key'
       secret = 'oauth_dailymotion_secret'
       successUri = '/oauth/dailymotion/success'
       failureUri = '/oauth/dailymotion/error'
       callback = "${baseURL}/oauth/dailymotion/callback"
+      scope = 'read write delete email userinfo feed manage_videos manage_comments manage_playlists manage_tiles manage_subscriptions manage_friends manage_favorites manage_groups manage_records manage_subtitles manage_features'
+
     }
     // ...
   }
 }
 
-```
-
-In your view you can use the taglib exposed from this plugin and from OAuth plugin to create links and to know if the user is authenticated with a given provider:
-```xml
-<oauth:connect provider="dailymotion" id="dailymotion-connect-link">Dailymotion</oauth:connect>
-
-Logged with dailymotion?
-<s2o:ifLoggedInWith provider="dailymotion">yes</s2o:ifLoggedInWith>
-<s2o:ifNotLoggedInWith provider="dailymotion">no</s2o:ifNotLoggedInWith>
 ```
 
 Notes
