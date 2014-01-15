@@ -45,11 +45,10 @@ oauth {
 
 Notes
 =====
-Respect some other providers Dailymotion has the ablitity to obtain a new Access Token Starting from a Refresh Token created when the user log in succesfully
-the first time.
-Take a look at refreshToken property in  DailymotionOAuthToken class and getAccessTokenWithRefreshToken public method in CustomDMOAuth20ServiceImpl class.
+Unlike some other providers, Dailymotion allows obtaining a new access token from a refresh token created when the user logs in succesfully the first time.
+Take a look at refreshToken property in DailymotionOAuthToken class and getAccessTokenWithRefreshToken public method in CustomDMOAuth20ServiceImpl class.
 
-So I suggest to add some methods the in SpringSecurityOAuthController (or create a new service that take cares of this actions):
+If you want to use this possiblity in an easy way, I suggest adding some methods to your SpringSecurityOAuthController (or creating a new service for that):
 
 ```
 
@@ -64,7 +63,7 @@ So I suggest to add some methods the in SpringSecurityOAuthController (or create
     void updateUserAccessTokenIfNeeded(User user, boolean doReAuthenticate = false) {
         if (user) {
             if (user.tokenExpireDate.before(new Date(System.currentTimeMillis()))) {
-                createNewOAuthTokenFromRefreshToken("dailymotion", user.refreshToken, true, doReAuthenticate)
+                createNewOAuthTokenFromRefreshToken('dailymotion', user.refreshToken, true, doReAuthenticate)
             }
         }
     }
@@ -72,7 +71,7 @@ So I suggest to add some methods the in SpringSecurityOAuthController (or create
     /**
      * Create the authentication token in order to proceed with spring security login.
      * This OAuthToken contains all need information to identify a successfully authenticated user.
-     * If the user already exist the method update the token info in the persisted User
+     * If the user already exists, the method updates the token info in the persisted User
      *
      * @param providerName
      * @param scribeToken contains info from the oauthProvider after a successful remote login instances
@@ -80,8 +79,8 @@ So I suggest to add some methods the in SpringSecurityOAuthController (or create
      */
     OAuthToken createAuthToken(String providerName, Token scribeToken, boolean updateInfo = true) {
 
-        if (!providerName.equals("dailymotion"))
-            throw new DmApiException("wrong provider configuration")
+        if (!providerName.equals('dailymotion'))
+            throw new DmApiException('wrong provider configuration')
 
         OAuthToken oAuthToken = dailymotionSpringSecurityOAuthService.createAuthToken(scribeToken)
 
@@ -99,7 +98,7 @@ So I suggest to add some methods the in SpringSecurityOAuthController (or create
     /**
      * Create the authentication token using the refresh token associated with the user
      * in order to proceed with spring security login.
-     * This OAuthToken contains all need information to identify a successfully authenticated user
+     * This OAuthToken contains all needed information to identify a successfully authenticated user
      *
      * @param providerName
      * @param refreshToken
@@ -109,8 +108,8 @@ So I suggest to add some methods the in SpringSecurityOAuthController (or create
     OAuthToken createNewOAuthTokenFromRefreshToken(String providerName, String refreshToken,
                                                    boolean updateInfo = true) {
 
-        if (!providerName.equals("dailymotion"))
-            throw new DmApiException("wrong provider configuration")
+        if (!providerName.equals('dailymotion'))
+            throw new DmApiException('wrong provider configuration')
 
         //this must be a CustomDMOAuth20ServiceImpl instance
         OAuthService oAuthService = oauthService.findService(providerName)
