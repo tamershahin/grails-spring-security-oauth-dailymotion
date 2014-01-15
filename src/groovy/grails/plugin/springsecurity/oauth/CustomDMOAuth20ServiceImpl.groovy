@@ -14,7 +14,7 @@ import org.scribe.model.Verifier
 import org.scribe.oauth.OAuthService
 
 /**
- * Implementation for the OAuthService for Dailymotion OAUTH provider.
+ * OAuthService implementation for Dailymotion OAUTH provider.
  */
 public class CustomDMOAuth20ServiceImpl implements OAuthService {
     private static final String VERSION = "2.0";
@@ -34,8 +34,8 @@ public class CustomDMOAuth20ServiceImpl implements OAuthService {
     }
 
     /**
-     * Perform the actual request for the accessToken against the OAUTH provider.
-     * Modified to use the body parameters for POST verb. The one that this method overrides use to urlencode parameter
+     * Performs the actual request for the accessToken against the OAUTH provider.
+     * Modified to use the body parameters for POST verb. The one that this method overrides uses to urlencode parameter
      * anyway
      *
      * @param requestToken the request token provided from the provider for this request
