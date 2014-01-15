@@ -2,7 +2,7 @@
 * @author <a href='mailto:tamer.shahin@gmail.com'>Tamer Shahin</a>
 */
 class SpringSecurityOauthDailymotionGrailsPlugin {
-    def version = "0.1-SNAPSHOT"
+    def version = "0.1"
     def grailsVersion = "1.2.2 > *"
     def dependsOn = [springSecurityOauth: '2.0.2 > *']
     def pluginExcludes = [
