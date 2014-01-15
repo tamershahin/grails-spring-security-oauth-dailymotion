@@ -25,7 +25,7 @@ import org.scribe.model.Token
 class DailymotionSpringSecurityOAuthService {
 
     /**
-     * Return the DailymotionOAuthToken containing the authenticated user's info
+     * Return the DailymotionOAuthToken containing the authenticated user's info.
      * This token must be used to perform the authentication in spring security.
      * @param accessToken the Token instance created after a successful authentication with OAuth provider
      * @return a new DailymotionOAuthToken
@@ -36,7 +36,7 @@ class DailymotionSpringSecurityOAuthService {
         try {
             oauthToken = new DailymotionOAuthToken(convertTokenFromJsonToUrlEncoded(accessToken))
         } catch (Throwable e) {
-            log.debug "AccessToken not present or not correct! ${accessToken} + e.toString()"
+            log.debug "AccessToken not present or not correct! ${accessToken}", e
             throw new OAuthLoginException("Error creating the access token: " + e.toString())
         }
         if (!oauthToken?.profileId) {
@@ -48,8 +48,8 @@ class DailymotionSpringSecurityOAuthService {
 
     /**
      * Converts the token provided from Dailymotion (JSON) in a form usable by Spring Security (URLENCODED).
-     * The DailymotionOAuthToken extends OAuthToken. The Latter doesn't accept json as rawResponse, we must urlEncode it
-     * before create the any entity because all happen in the constructor.
+     * The DailymotionOAuthToken extends OAuthToken. The latter doesn't accept json as rawResponse so we 
+     * must urlEncode it before creating the any entity because everything happens in the constructor.
      * @return a Token instance as needed by the OAuthToken constructor.
      */
     private static Token convertTokenFromJsonToUrlEncoded(Token accessToken) {
