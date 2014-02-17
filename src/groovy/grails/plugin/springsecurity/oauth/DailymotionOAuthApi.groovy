@@ -14,12 +14,14 @@ import org.scribe.utils.OAuthEncoder
 import org.scribe.utils.Preconditions
 
 /**
-* Contains all the configuration needed to instantiate a valid {@link OAuthService}
-*/
+ * Contains all the configuration needed to instantiate a valid {@link OAuthService}
+ */
 public class DailymotionOAuthApi extends DefaultApi20 {
 
-    private static final String AUTHORIZE_URL = "https://api.dailymotion.com/oauth/authorize?display=popup&response_type=code&grant_type=authorization_code&client_id=%s&redirect_uri=%s";
-    private static final String SCOPED_AUTHORIZE_URL = AUTHORIZE_URL + "&scope=%s";
+    private static
+    final String AUTHORIZE_URL = "https://api.dailymotion.com/oauth/authorize?display=popup&response_type=code&grant_type=authorization_code&client_id=%s&redirect_uri=%s";
+    private static
+    final String SCOPED_AUTHORIZE_URL = AUTHORIZE_URL + "&scope=%s";
 
     /**
      * {@inheritDoc}
@@ -42,7 +44,7 @@ public class DailymotionOAuthApi extends DefaultApi20 {
      */
     @Override
     public String getAuthorizationUrl(OAuthConfig config) {
-        Preconditions.checkValidUrl(config.getCallback(), "Must provide a valid url as callback. Facebook does not support OOB");
+        Preconditions.checkValidUrl(config.getCallback(), "Must provide a valid url as callback. Dailymotion does not support OOB");
 
         // Append scope if present
         if (config.hasScope()) {

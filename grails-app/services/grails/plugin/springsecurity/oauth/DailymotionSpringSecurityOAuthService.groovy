@@ -41,7 +41,7 @@ class DailymotionSpringSecurityOAuthService {
         }
         if (!oauthToken?.profileId) {
             log.debug "No user id from Dailymotion. Response: \n${oauthToken}"
-            throw new OAuthLoginException("No user id from Facebook")
+            throw new OAuthLoginException("No user id from Dailymotion")
         }
         return oauthToken
     }
