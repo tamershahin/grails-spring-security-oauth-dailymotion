@@ -228,7 +228,7 @@ Release Notes
 =============
 
 * 0.1   - released 15/01/2014 - this is the first released revision of the plugin.
-
+* 0.1.1 - released 07/03/2014 - minor updates
 
 Credits
 =======
